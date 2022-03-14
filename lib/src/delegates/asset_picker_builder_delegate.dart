@@ -821,12 +821,18 @@ class DefaultAssetPickerBuilderDelegate
         isWeChatMoment &&
         asset.type == AssetType.video &&
         provider.selectedAssets.isNotEmpty;
+    bool selectedVideoAndIsPhoto() =>
+        isWeChatMoment &&
+        asset.type == AssetType.image &&
+        provider.selectedAssets.isNotEmpty;
     // When we reached the maximum select count and the asset
     // is not selected, do nothing.
     // When the special type is WeChat Moment, pictures and videos cannot
     // be selected at the same time. Video select should be banned if any
     // pictures are selected.
-    if (selectedAllAndNotSelected() || selectedPhotosAndIsVideo()) {
+    if (selectedAllAndNotSelected() ||
+        selectedPhotosAndIsVideo() ||
+        selectedVideoAndIsPhoto()) {
       return;
     }
     final List<AssetEntity> _current;
@@ -1447,7 +1453,7 @@ class DefaultAssetPickerBuilderDelegate
     return Consumer<DefaultAssetPickerProvider>(
       builder: (_, DefaultAssetPickerProvider p, __) {
         return MaterialButton(
-          minWidth: p.isSelectedNotEmpty ? 48 : 20,
+          minWidth: p.isSelectedNotEmpty ? 48 : 0,
           height: appBarItemHeight,
           padding: const EdgeInsets.symmetric(horizontal: 12),
           disabledColor: theme.dividerColor,
@@ -1456,10 +1462,7 @@ class DefaultAssetPickerBuilderDelegate
             borderRadius: BorderRadius.circular(3),
           ),
           child: ScaleText(
-            p.isSelectedNotEmpty && !isSingleAssetMode
-                ? '${textDelegate.confirm}'
-                    ' (${p.selectedAssets.length}/${p.maxAssets})'
-                : textDelegate.confirm,
+            textDelegate.confirm,
             style: TextStyle(
               color: p.isSelectedNotEmpty
                   ? theme.textTheme.bodyText1?.color
@@ -1468,8 +1471,7 @@ class DefaultAssetPickerBuilderDelegate
               fontWeight: FontWeight.normal,
             ),
             semanticsLabel: p.isSelectedNotEmpty && !isSingleAssetMode
-                ? '${semanticsTextDelegate.confirm}'
-                    ' (${p.selectedAssets.length}/${p.maxAssets})'
+                ? ''
                 : semanticsTextDelegate.confirm,
           ),
           onPressed: p.isSelectedNotEmpty
@@ -1936,7 +1938,8 @@ class DefaultAssetPickerBuilderDelegate
             (!p.selectedAssets.contains(asset) && p.selectedMaximumAssets) ||
                 (isWeChatMoment &&
                     asset.type == AssetType.video &&
-                    p.selectedAssets.isNotEmpty);
+                    p.selectedAssets.isNotEmpty) ||
+                !p.isSameAsSelected(asset);
         if (isDisabled) {
           return Container(
             color: theme.colorScheme.background.withOpacity(.85),

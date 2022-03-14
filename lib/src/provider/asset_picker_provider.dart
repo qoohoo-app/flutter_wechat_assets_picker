@@ -116,6 +116,16 @@ abstract class AssetPickerProvider<Asset, Path> extends ChangeNotifier {
   int get totalAssetsCount => _totalAssetsCount;
   int _totalAssetsCount = 0;
 
+  bool isSameAsSelected(AssetEntity asset) {
+    bool isSameAsSelected = true;
+
+    if (selectedAssets.isNotEmpty) {
+      isSameAsSelected = (selectedAssets[0] as AssetEntity).type == asset.type;
+    }
+
+    return isSameAsSelected;
+  }
+
   set totalAssetsCount(int value) {
     if (value == _totalAssetsCount) {
       return;
@@ -203,7 +213,16 @@ abstract class AssetPickerProvider<Asset, Path> extends ChangeNotifier {
   bool get isSelectedNotEmpty => selectedAssets.isNotEmpty;
 
   /// 是否已经选择了最大数量的资源
-  bool get selectedMaximumAssets => selectedAssets.length == maxAssets;
+  bool get selectedMaximumAssets {
+    bool selectedMaximumAssets = selectedAssets.length == maxAssets;
+
+    if (selectedAssets.isNotEmpty) {
+      selectedMaximumAssets =
+          (selectedAssets.first as AssetEntity).type == AssetType.video;
+    }
+
+    return selectedMaximumAssets;
+  }
 
   /// Select asset.
   /// 选中资源

@@ -737,10 +737,7 @@ class FileAssetPickerBuilder
               borderRadius: BorderRadius.circular(3.0),
             ),
             child: Text(
-              provider.isSelectedNotEmpty && !isSingleAssetMode
-                  ? '${textDelegate.confirm}'
-                      '(${provider.selectedAssets.length}/${provider.maxAssets})'
-                  : textDelegate.confirm,
+              textDelegate.confirm,
               style: TextStyle(
                 color: provider.isSelectedNotEmpty
                     ? theme.textTheme.bodyText1?.color
@@ -1496,12 +1493,6 @@ class FileAssetPickerViewerBuilderDelegate
             ),
             child: Text(
               () {
-                if (provider.isSelectedNotEmpty) {
-                  return '${textDelegate.confirm}'
-                      '(${provider.currentlySelectedAssets.length}'
-                      '/'
-                      '${selectorProvider!.maxAssets})';
-                }
                 return textDelegate.confirm;
               }(),
               style: TextStyle(
