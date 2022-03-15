@@ -81,8 +81,18 @@ class AssetPicker<Asset, Path> extends StatefulWidget {
   }
 
   /// {@macro wechat_assets_picker.delegates.AssetPickerDelegate.themeData}
-  static ThemeData themeData(Color? themeColor, {bool light = false}) {
-    return _pickerDelegate.themeData(themeColor, light: light);
+  static ThemeData themeData(
+    Color? themeColor, {
+    bool light = false,
+    Color? bgColor,
+    TextTheme? textTheme,
+  }) {
+    return _pickerDelegate.themeData(
+      themeColor,
+      light: light,
+      bgColor: bgColor,
+      textTheme: textTheme,
+    );
   }
 
   @override

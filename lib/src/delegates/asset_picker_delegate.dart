@@ -199,19 +199,25 @@ class AssetPickerDelegate {
   /// Set [light] to true if pickers require a light version of the theme.
   /// 设置 [light] 为 true 时可以获取浅色版本的主题。
   /// {@endtemplate}
-  ThemeData themeData(Color? themeColor, {bool light = false}) {
+  ThemeData themeData(
+    Color? themeColor, {
+    bool light = false,
+    Color? bgColor,
+    TextTheme? textTheme,
+  }) {
     themeColor ??= defaultThemeColorWeChat;
     if (light) {
       return ThemeData.light().copyWith(
         primaryColor: Colors.grey[50],
         primaryColorLight: Colors.grey[50],
         primaryColorDark: Colors.grey[50],
-        canvasColor: Colors.grey[100],
+        canvasColor: bgColor ?? Colors.grey[100],
         scaffoldBackgroundColor: Colors.grey[50],
         bottomAppBarColor: Colors.grey[50],
         cardColor: Colors.grey[50],
         highlightColor: Colors.transparent,
         toggleableActiveColor: themeColor,
+        textTheme: textTheme,
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: themeColor,
           selectionColor: themeColor.withAlpha(100),
@@ -247,7 +253,7 @@ class AssetPickerDelegate {
       primaryColor: Colors.grey[900],
       primaryColorLight: Colors.grey[900],
       primaryColorDark: Colors.grey[900],
-      canvasColor: Colors.grey[850],
+      canvasColor: bgColor ?? Colors.grey[850],
       scaffoldBackgroundColor: Colors.grey[900],
       bottomAppBarColor: Colors.grey[900],
       cardColor: Colors.grey[900],
@@ -258,6 +264,7 @@ class AssetPickerDelegate {
         selectionColor: themeColor.withAlpha(100),
         selectionHandleColor: themeColor,
       ),
+      textTheme: textTheme,
       indicatorColor: themeColor,
       appBarTheme: const AppBarTheme(
         systemOverlayStyle: SystemUiOverlayStyle(

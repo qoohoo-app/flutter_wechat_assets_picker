@@ -1482,7 +1482,7 @@ class DefaultAssetPickerBuilderDelegate
           height: appBarItemHeight,
           padding: const EdgeInsets.symmetric(horizontal: 12),
           color: theme.colorScheme.secondary,
-          disabledColor: theme.dividerColor,
+          disabledColor: Colors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(3),
           ),
