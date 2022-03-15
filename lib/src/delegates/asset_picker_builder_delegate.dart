@@ -1456,8 +1456,7 @@ class DefaultAssetPickerBuilderDelegate
           minWidth: p.isSelectedNotEmpty ? 48 : 0,
           height: appBarItemHeight,
           padding: const EdgeInsets.symmetric(horizontal: 12),
-          disabledColor: theme.dividerColor,
-          color: p.isSelectedNotEmpty ? themeColor : theme.dividerColor,
+          disabledColor: Colors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(3),
           ),

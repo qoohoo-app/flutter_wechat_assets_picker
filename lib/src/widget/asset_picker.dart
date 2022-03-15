@@ -2,7 +2,6 @@
 /// [Author] Alex (https://github.com/Alex525)
 /// [Date] 2020/3/31 15:39
 ///
-// ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:photo_manager/photo_manager.dart';
@@ -131,19 +130,25 @@ class AssetPicker<Asset, Path> extends StatefulWidget {
 
   /// Build a dark theme according to the theme color.
   /// 通过主题色构建一个默认的暗黑主题
-  static ThemeData themeData(Color? themeColor, {bool light = false}) {
+  static ThemeData themeData(
+    Color? themeColor, {
+    bool light = false,
+    Color? bgColor,
+    TextTheme? textTheme,
+  }) {
     themeColor ??= defaultThemeColorWeChat;
     if (light) {
       return ThemeData.light().copyWith(
         primaryColor: Colors.grey[50],
         primaryColorLight: Colors.grey[50],
         primaryColorDark: Colors.grey[50],
-        canvasColor: Colors.grey[100],
+        canvasColor: bgColor ?? Colors.grey[100],
         scaffoldBackgroundColor: Colors.grey[50],
         bottomAppBarColor: Colors.grey[50],
         cardColor: Colors.grey[50],
         highlightColor: Colors.transparent,
         toggleableActiveColor: themeColor,
+        textTheme: textTheme,
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: themeColor,
           selectionColor: themeColor.withAlpha(100),
@@ -179,7 +184,7 @@ class AssetPicker<Asset, Path> extends StatefulWidget {
       primaryColor: Colors.grey[900],
       primaryColorLight: Colors.grey[900],
       primaryColorDark: Colors.grey[900],
-      canvasColor: Colors.grey[850],
+      canvasColor: bgColor ?? Colors.grey[850],
       scaffoldBackgroundColor: Colors.grey[900],
       bottomAppBarColor: Colors.grey[900],
       cardColor: Colors.grey[900],
@@ -190,6 +195,7 @@ class AssetPicker<Asset, Path> extends StatefulWidget {
         selectionColor: themeColor.withAlpha(100),
         selectionHandleColor: themeColor,
       ),
+      textTheme: textTheme,
       indicatorColor: themeColor,
       appBarTheme: const AppBarTheme(
         systemOverlayStyle: SystemUiOverlayStyle(
