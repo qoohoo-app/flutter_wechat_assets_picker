@@ -2164,11 +2164,11 @@ class DefaultAssetPickerBuilderDelegate
             child: Stack(
               fit: StackFit.expand,
               children: <Widget>[
-                if (isAppleOS)
+                if (isAppleOS || Platform.isIOS)
                   appleOSLayout(context)
                 else
                   androidLayout(context),
-                if (Platform.isIOS) iOSPermissionOverlay(context),
+                // if (Platform.isIOS) iOSPermissionOverlay(context),
               ],
             ),
           ),
