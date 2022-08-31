@@ -1480,8 +1480,9 @@ class DefaultAssetPickerBuilderDelegate
         return MaterialButton(
           minWidth: p.isSelectedNotEmpty ? 48 : 0,
           height: appBarItemHeight,
+          elevation: 0,
           padding: const EdgeInsets.symmetric(horizontal: 12),
-          color: theme.colorScheme.secondary,
+          color: Colors.transparent,
           disabledColor: Colors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(3),

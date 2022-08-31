@@ -757,9 +757,9 @@ class FileAssetPickerBuilder
           return MaterialButton(
             minWidth: provider.isSelectedNotEmpty ? 48.0 : 20.0,
             height: appBarItemHeight,
+            elevation: 0,
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
-            color:
-                provider.isSelectedNotEmpty ? themeColor : theme.dividerColor,
+            color: Colors.transparent,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(3.0),
             ),

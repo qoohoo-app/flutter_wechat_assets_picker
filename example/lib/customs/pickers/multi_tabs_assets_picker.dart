@@ -391,9 +391,10 @@ class MultiTabAssetPickerBuilder extends DefaultAssetPickerBuilderDelegate {
         return MaterialButton(
           minWidth: p.isSelectedNotEmpty ? 48 : 20,
           height: appBarItemHeight,
+          elevation: 0,
           padding: const EdgeInsets.symmetric(horizontal: 12),
           disabledColor: theme.dividerColor,
-          color: p.isSelectedNotEmpty ? themeColor : theme.dividerColor,
+          color: Colors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(3),
           ),
